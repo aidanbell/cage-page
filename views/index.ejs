@@ -1,6 +1,16 @@
 <%- include('./partials/header') %>
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Cage Page</h1>
+    <p>Welcome to Cage Page</p>
 
+    <form class="text-center" action="/" method="POST">
+      <button class="btn btn-success" type="submit">list!</button>
+    </form>
+    <% if (list) { %>
+    <div class="movie-list">
+      <% list.cast.forEach(function(film) { %>
+        <h3><%= film.title %></h3>
+      <% }); %>
+    </div>
+    <% }; %>
 <%- include('./partials/footer') %>
