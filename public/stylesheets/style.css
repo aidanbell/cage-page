@@ -6,3 +6,19 @@ body {
 a {
   color: #00B7FF;
 }
+
+nav {
+  background-color: lightgray
+}
+
+.card-img-top {
+  width: 20%;
+}
+
+.movie-list {
+  display: grid;
+}
+
+.card {
+  align-items: center;
+}

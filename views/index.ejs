@@ -9,7 +9,20 @@
     <% if (list) { %>
     <div class="movie-list">
       <% list.cast.forEach(function(film) { %>
-        <h3><%= film.title %></h3>
+        <div class="card card-cascade narrower">
+          <div class="view view-cascade overlay">
+            <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body card-body-cascade">
+            <h4 class="font-weight-bold card-title"><%= film.title %></h4>
+            <form class="text-center" action"/:id" method="GET">
+              <a class="btn btn-unique">Button</a>
+            </form>
+          </div>
+        </div>
       <% }); %>
     </div>
     <% }; %>
