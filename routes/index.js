@@ -19,7 +19,9 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', (req, res, next) => {
-  let options = {url: rootURL};
+  let options = {
+    url: rootURL
+  };
   request(options, (err, response, body) => {
     let list = JSON.parse(body);
     res.render('index', {
@@ -31,50 +33,43 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/movies/:id', (req, res, next) => {
-  let id = req.params.id;
-  let castDetails;
-  let movieDetails;
-  let castOps = { url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`};
-  let movieOps = { url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`};
+  const id = req.params.id;
+  const castOps = moviesCtrl.detailsCall({
+    url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
+  });
+  const movieOps = moviesCtrl.detailsCall({
+    url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`
+  });
 
 
-// THIS WORKS
-  moviesCtrl.detailsCall(castOps)
-  .then( result => {
-    castDetails = result;
-  })
-  .then( () => moviesCtrl.detailsCall(movieOps) )
-  .then( result => {
-    movieDetails = result;
-    console.log(movieDetails);
-  })
-  .then(()=>
-     res.render('show', {
-          movieDetails,
-          castDetails,
-          id: req.params.id,
-          user: req.user,
-          name: req.query.name
-        })
-  ).catch(err=>console.error(err))
+  Promise.all([castOps, movieOps]).then(([castDetails, movieDetails]) => {
+      res.render('show', {
+        castDetails,
+        movieDetails,
+        id,
+        user: req.user,
+        name: req.query.name
+      })
+    })
+    .catch(err => console.log(err));
 });
 
 router.get('/auth/google', passport.authenticate(
-  'google',
-  {scope: ['profile', 'email'] }
+  'google', {
+    scope: ['profile', 'email']
+  }
 ));
 
 // Google OAuth callback route
 router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
+  'google', {
     successRedirect: '/',
     failureRedirect: '/'
   }
 ));
 
 // OAuth logout route
-router.get('/logout', function(req, res){
+router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
 });
