@@ -6,8 +6,7 @@ const moviesCtrl = require('../controllers/movies');
 
 const token = process.env.API_KEY;
 let id;
-const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`
-const detailsURL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
+const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
 
 
 /* GET home page. */
@@ -36,26 +35,20 @@ router.get('/:id', (req, res, next) => {
   let id = req.params.id;
   let castDetails;
   let movieDetails;
-  let castOps = {url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`};
-  let movieOps = { url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`};
+  let castOps = moviesCtrl.detailsCall({url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`});
+  let movieOps = moviesCtrl.detailsCall({ url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`});
 
-  moviesCtrl.detailsCall(castOps)
-  .then( result => {
-    castDetails = result;
-    return detailsCall(movieOps);
-  })
-  .then( result => {
-    movieDetails = result;
-    res.render('show', {
-      list: list,
-      id: req.params.id,
-      user: req.user,
-      name: req.query.name
-    })
-    .catch( err => {
-      console.log(err)
-    })
-  });
+  Promise.all([castOps, movieOps]).then(
+    ([castDetails, movieDetails]) => {
+
+      return res.render('show', {
+          movieDetails,
+          castDetails,
+          id: req.params.id,
+          user: req.user,
+          name: req.query.name
+        })
+  }).catch(err=>console.error(err))
 });
 
 router.get('/auth/google', passport.authenticate(
