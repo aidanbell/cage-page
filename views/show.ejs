@@ -1,5 +1,9 @@
 <%- include('./partials/header') %>
 
-
+<div class="card">
+  <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-movieDetails.poster_path %>" alt="Card image cap">
+  <h1><%= movieDetails.title %></h1>
+  <p><%= movieDetails.overview %></p>
+</div>
 
 <%- include('./partials/footer') %>

@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const passport = require('passport');
 const router = express.Router();
+const moviesCtrl = require('../controllers/movies');
 
 const token = process.env.API_KEY;
 let id;
@@ -32,12 +33,29 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  let options = {url: detailsURL};
-  res.render('show', {
-    id: req.params.id,
-    user: req.user,
-    name: req.query.name
+  let id = req.params.id;
+  let castDetails;
+  let movieDetails;
+  let castOps = {url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`};
+  let movieOps = { url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`};
+
+  moviesCtrl.detailsCall(castOps)
+  .then( result => {
+    castDetails = result;
+    return detailsCall(movieOps);
   })
+  .then( result => {
+    movieDetails = result;
+    res.render('show', {
+      list: list,
+      id: req.params.id,
+      user: req.user,
+      name: req.query.name
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  });
 });
 
 router.get('/auth/google', passport.authenticate(
