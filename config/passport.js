@@ -7,11 +7,15 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.GOOGLE_SECRET,
   callbackURL: process.env.GOOGLE_CALLBACK
 },
-  function(accessToken, refreshToken, profile, cb) {
+  function(accessToken, refreshToken, profile, done) {
+
+    console.log("accessToken", accessToken)
     User.findOne({ 'googleId': profile.id }, function(err, user) {
-      if (err) return cb(err);
+      console.log("ERR: ", err, user)
+      if (err) return done(err);
       if (user) {
-        return cb(null, user);
+        console.log("USER: ", user)
+        return done(null, user);
       } else {
         // create new user
         var newUser = new User({
@@ -19,8 +23,9 @@ passport.use(new GoogleStrategy({
           googleId: profile.id
         });
         newUser.save(function(err) {
-          if (err) return cb(err);
-          return cb(null, newUser);
+          if (err) return done(err);
+          console.log("okay: ", newUser)
+          return done(null, newUser);
         });
       }
     });

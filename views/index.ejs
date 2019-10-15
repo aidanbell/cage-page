@@ -9,8 +9,6 @@
     <% if (list) { %>
     <div class="movie-list">
       <% list.cast.forEach(function(film) { %>
-        <!-- <% console.log(film.id) %> -->
-        <% console.log(list.cast.id) %>
         <div class="card card-cascade narrower">
           <div class="view view-cascade overlay">
             <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
@@ -20,7 +18,7 @@
           </div>
           <div class="card-body card-body-cascade">
             <h4 class="font-weight-bold card-title"><%= film.title %></h4>
-            <a class="btn btn-success" href="/<%= film.id %>">More Details</a>
+            <a class="btn btn-success" href="/movies/<%= film.id %>">More Details</a>
           </div>
         </div>
       <% }); %>
