@@ -4,7 +4,9 @@ const passport = require('passport');
 const router = express.Router();
 
 const token = process.env.API_KEY;
+let id;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`
+const detailsURL = `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
 
 
 /* GET home page. */
@@ -15,21 +17,32 @@ router.get('/', function(req, res, next) {
     user: req.user,
     name: req.query.name,
   });
-  console.log(user);
 });
 
 router.post('/', (req, res, next) => {
   let options = {url: rootURL};
   request(options, (err, response, body) => {
     let list = JSON.parse(body);
-    res.render('index', {list: list});
-    console.log(list);
+    res.render('index', {
+      list: list,
+      user: req.user,
+      name: req.query.name
+    });
+  })
+});
+
+router.get('/:id', (req, res, next) => {
+  let options = {url: detailsURL};
+  res.render('show', {
+    id: req.params.id,
+    user: req.user,
+    name: req.query.name
   })
 });
 
 router.get('/auth/google', passport.authenticate(
   'google',
-  {scope: ['profile', 'email' ] }
+  {scope: ['profile', 'email'] }
 ));
 
 // Google OAuth callback route
@@ -37,7 +50,7 @@ router.get('/oauth2callback', passport.authenticate(
   'google',
   {
     successRedirect: '/',
-    failureRedirect: '/'
+    failureRedirect: '/users'
   }
 ));
 

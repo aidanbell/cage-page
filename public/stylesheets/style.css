@@ -8,7 +8,8 @@ a {
 }
 
 nav {
-  background-color: lightgray
+  background-color: lightgray;
+  margin: none;
 }
 
 .card-img-top {
