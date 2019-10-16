@@ -1,6 +1,5 @@
 const request = require('request');
 
-
 let detailsCall = (options) => {
   return new Promise ((resolve, reject) => {
     request(options, (err, res, body) => {

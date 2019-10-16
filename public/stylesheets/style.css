@@ -29,3 +29,15 @@ nav {
   text-decoration: none;
   text-transform: uppercase;
 }
+
+main {
+  padding: 20px
+}
+
+.btn-details {
+  width: 100%;
+}
+
+.card-title {
+  font-size-adjust: auto;
+}

@@ -3,6 +3,7 @@ const request = require('request');
 const passport = require('passport');
 const router = express.Router();
 const moviesCtrl = require('../controllers/movies');
+const Movie = require('../models/movie');
 
 const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
