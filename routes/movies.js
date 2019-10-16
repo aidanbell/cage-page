@@ -4,6 +4,7 @@ const passport = require('passport');
 const router = express.Router();
 const moviesCtrl = require('../controllers/movies');
 const Movie = require('../models/movie');
+const User = require('../models/user');
 
 const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
@@ -52,5 +53,14 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
+router.post('/:id', (req, res, next) => {
+  User.findById(req.user.id, function(err, user) {
+    user.watched.push(req.params.id);
+    user.save(function(err) {
+      res.redirect(`/movies/${req.params.id}`)
+    })
+  })
+})
 
 module.exports = router;

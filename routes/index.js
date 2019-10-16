@@ -6,6 +6,8 @@ const Movie = require('../models/movie');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   let list = null;
+  // Used to populate the DB from the API call
+  // console.log(Movie.populateDb())
   res.render('index', {
     list: list,
     user: req.user,

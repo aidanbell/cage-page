@@ -5,6 +5,15 @@ const request = require('request');
 const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
 
+var ruleSchema = new Schema(
+  {
+    userId: String,
+    movieId: String,
+    content: String
+  }, {
+    timestamps: true
+  });
+  
 var movieSchema = new Schema(
   {
     title: {
@@ -18,9 +27,11 @@ var movieSchema = new Schema(
     poster_path: {
       type: String,
       required: true
-    }
+    },
+    rules: [ruleSchema]
   }
 );
+
 
 // Used to update Database with minimal movie info
 // to limit API calls
