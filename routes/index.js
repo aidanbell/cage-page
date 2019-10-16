@@ -18,13 +18,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', (req, res, next) => {
+router.get('/movies', (req, res, next) => {
   let options = {
     url: rootURL
   };
   request(options, (err, response, body) => {
     let list = JSON.parse(body);
-    res.render('index', {
+    res.render('movies', {
       list: list,
       user: req.user,
       name: req.query.name
@@ -63,7 +63,7 @@ router.get('/auth/google', passport.authenticate(
 // Google OAuth callback route
 router.get('/oauth2callback', passport.authenticate(
   'google', {
-    successRedirect: '/',
+    successRedirect: '/my-list',
     failureRedirect: '/'
   }
 ));

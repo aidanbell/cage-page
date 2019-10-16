@@ -3,11 +3,8 @@
     <h1>Cage Page</h1>
     <p>Welcome to Cage Page</p>
 
-    <form class="text-center" action="/movies" method="GET">
-      <button class="btn btn-success" type="submit">list!</button>
-    </form>
     <% if (list) { %>
-    <div class="movie-list">
+    <div class="movie-list card-group">
       <% list.cast.forEach(function(film) { %>
         <div class="card card-cascade w-25">
           <div class="view view-cascade overlay">
