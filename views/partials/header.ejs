@@ -23,20 +23,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/movies">Movies</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">My List</a>
-        </li>
       </ul>
       <!-- Links -->
-      <ul>
-        <li>
         <% if (user) { %>
-          <a href="/logout"><span class="oi oi-account-login"></span>Logout</a>
+          <a class="logged-in-nav" href="/movies/my-list">My List</a>
+          <a class="logged-in-nav" href="/logout"><span class="oi oi-account-login"></span>Logout</a>
         <% } else { %>
           <a href="/auth/google"><span class="oi oi-account-login"></span>Log-in</a>
         <% } %>
-        </li>
-      </ul>
-
   </nav>
-  <body>
+  <main>

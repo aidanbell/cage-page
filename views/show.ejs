@@ -1,19 +1,56 @@
 <%- include('./partials/header') %>
 
-<div class="card-details">
+<div class="card-details" id="details">
   <div class="col-md-4">
     <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-movieDetails.poster_path %>" alt="Card image cap">
   </div>
   <div class"col-md-4">
     <h1><%= movieDetails.title %></h1>
     <% if (movieDetails.genres.length > 0) { %>
-      <ul>
+    <ul>
       <% movieDetails.genres.forEach(function(genre) { %>
-        <li><%= genre.name %></li>
+      <li><%= genre.name %></li>
       <% }) %>
-      </ul>
+    </ul>
     <% } %>
+    <h5>User Rating:
+      <% for (i = 0; i < Math.round(movieDetails.vote_average / 2); i++) { %>
+      <span class="oi oi-star"></span>
+      <% } %>
+    </h5>
     <p><%= movieDetails.overview %></p>
+    <% for (i = 0; i < 5; i++) { %>
+    <% if (castDetails.cast[i].name === "Nicolas Cage") { %>
+    <h3>Nicolas Cage Stars in this movie</h3>
+    <% break %>
+    <% } else if (i === 4){ %>
+    <h3>Nicolas Cage Cameos in this movie</h3>
+    <% } %>
+    <% } %>
+    <form class="" action="index.html" method="post">
+      <button class="btn btn-success">Watched</button>
+    </form>
+  </div>
+  <div class="col-md-4">
+    <div>
+      <p>Sample Text</p>
+    </div>
+    <div>
+      <p>Sample Text</p>
+    </div>
+    <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/reviews">
+      <label>Review:</label>
+      <textarea name="content"></textarea>
+      <label>Rating:</label>
+      <select name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+      <input type="submit" value="Add Review">
+    </form>
   </div>
 </div>
 

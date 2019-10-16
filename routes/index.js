@@ -18,42 +18,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/movies', (req, res, next) => {
-  let options = {
-    url: rootURL
-  };
-  request(options, (err, response, body) => {
-    let list = JSON.parse(body);
-    res.render('movies', {
-      list: list,
-      user: req.user,
-      name: req.query.name
-    });
-  })
-});
-
-router.get('/movies/:id', (req, res, next) => {
-  const id = req.params.id;
-  const castOps = moviesCtrl.detailsCall({
-    url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
-  });
-  const movieOps = moviesCtrl.detailsCall({
-    url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`
-  });
-
-
-  Promise.all([castOps, movieOps]).then(([castDetails, movieDetails]) => {
-      res.render('show', {
-        castDetails,
-        movieDetails,
-        id,
-        user: req.user,
-        name: req.query.name
-      })
-    })
-    .catch(err => console.log(err));
-});
-
+// Google auth
 router.get('/auth/google', passport.authenticate(
   'google', {
     scope: ['profile', 'email']
@@ -63,7 +28,7 @@ router.get('/auth/google', passport.authenticate(
 // Google OAuth callback route
 router.get('/oauth2callback', passport.authenticate(
   'google', {
-    successRedirect: '/my-list',
+    successRedirect: '/movies',
     failureRedirect: '/'
   }
 ));

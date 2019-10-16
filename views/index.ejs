@@ -6,22 +6,6 @@
     <form class="text-center" action="/movies" method="GET">
       <button class="btn btn-success" type="submit">list!</button>
     </form>
-    <% if (list) { %>
-    <div class="movie-list">
-      <% list.cast.forEach(function(film) { %>
-        <div class="card card-cascade w-25">
-          <div class="view view-cascade overlay">
-            <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <div class="card-body card-body-cascade">
-            <h4 class="font-weight-bold card-title"><%= film.title %></h4>
-            <a class="btn btn-success" href="/movies/<%= film.id %>">More Details</a>
-          </div>
-        </div>
-      <% }); %>
-    </div>
-    <% }; %>
+
+
 <%- include('./partials/footer') %>

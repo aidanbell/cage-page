@@ -3,8 +3,8 @@
     <h1>Cage Page</h1>
     <p>Welcome to Cage Page</p>
 
-    <% if (list) { %>
     <div class="movie-list card-group">
+      <div class="row">
       <% list.cast.forEach(function(film) { %>
         <div class="card card-cascade w-25">
           <div class="view view-cascade overlay">
@@ -20,5 +20,5 @@
         </div>
       <% }); %>
     </div>
-    <% }; %>
+    </div>
 <%- include('./partials/footer') %>
