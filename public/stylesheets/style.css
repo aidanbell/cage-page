@@ -1,5 +1,6 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  align-items: center;
 }
 
 
@@ -24,14 +25,30 @@ nav {
   display: flex;
 }
 
+.nav-link {
+  color: darkgray;
+}
+
+.btn-outline-dark {
+  text-decoration: none;
+  border-radius: 10%;
+  border: 1px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.btn-outline-dark:hover {
+  text-decoration: none;
+}
+
 .logged-in-nav {
-  color:
   text-decoration: none;
   text-transform: uppercase;
 }
 
 main {
-  padding: 20px
+  padding: 20px;
+  align-items: center;
 }
 
 .btn-details {
@@ -52,4 +69,39 @@ main {
 
 #user-name {
   display: none;
+}
+
+#image {
+  background-image: url("https://img1.looper.com/img/uploads/2015/10/craziestnicolascageroles.jpg");
+  background-size: cover;
+  width: 85%;
+  height: 600px;
+  margin: auto;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+#text {
+  margin: auto;
+  padding: 10px;
+  width: 85%;
+}
+
+.log-in {
+  align-self: center;
+}
+
+.card-cascade {
+  width: 10vmin;
+}
+
+.card-show {
+  margin: auto;
+  padding: 10px 40px 0px 40px;
+
+  width: 100%;
 }

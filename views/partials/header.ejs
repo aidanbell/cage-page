@@ -12,25 +12,28 @@
 </head>
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark primary-color">
-
+<div class="container">
   <!-- Navbar brand -->
   <h2 class="navbar-brand">The Cage Page</h2>
 
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
-    </li>
     <li class="nav-item">
-      <a class="nav-link" href="/movies">Movies</a>
+      <a class="btn-outline-dark" href="/">Home</a>
     </li>
+    <% if (user) { %>
+      <li class="nav-item">
+        <a class="btn-outline-dark" href="/movies">Movies</a>
+      </li>
+    <% } %>
   </ul>
   <!-- Links -->
   <% if (user) { %>
-  <a class="logged-in-nav" href="/movies/my-list">My List</a>
-  <a class="logged-in-nav" href="/logout"><span class="oi oi-account-login"></span>Logout</a>
+  <!-- <a class="logged-in-nav" href="/movies/my-list">My List</a> -->
+  <a class="btn-outline-dark logged-in-nav" href="/logout"><span class="oi oi-account-login"></span>Logout</a>
   <% } else { %>
-  <a href="/auth/google"><span class="oi oi-account-login"></span>Log-in</a>
+  <a class="btn-outline-dark" href="/auth/google"><span class="oi oi-account-login"></span>Log-in</a>
   <% } %>
+</div>
 </nav>
 <main>
