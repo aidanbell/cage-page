@@ -96,7 +96,8 @@ main {
 }
 
 .card-cascade {
-  width: 10vmin;
+  width: 15%;
+  margin: auto;
 }
 
 .card-show {
@@ -104,4 +105,8 @@ main {
   padding: 10px 40px 0px 40px;
 
   width: 100%;
+}
+
+#testing-notes {
+  color: red;
 }

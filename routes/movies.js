@@ -21,7 +21,11 @@ router.get('/my-list', (req, res, next) => {
 
 router.get('/search/?', (req, res, next) => {
   Movie.findOne({title: req.query.search}, (err, movie) => {
-    res.redirect(`/movies/${movie.movieId}`)
+    if (movie) {
+      res.redirect(`/movies/${movie.movieId}`);
+    } else {
+      res.redirect('/movies');
+    }
   })
 })
 
