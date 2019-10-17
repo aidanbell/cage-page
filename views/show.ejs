@@ -28,9 +28,13 @@
     <% } %>
     <% } %>
     <% if (user) { %>
-    <form class="" action="/movies/<%= movieDetails.id %>" method="post">
-      <button class="btn btn-success">Watched</button>
-    </form>
+      <% if (user.watched.filter(watch => watch == movieDetails.id).length) { %>
+        <button class="btn btn-danger" disabled>Watched</button>
+      <% } else { %>
+        <form class="" action="/movies/<%= movieDetails.id %>" method="post">
+          <button class="btn btn-success">Watched</button>
+        </form>
+      <% } %>
     <% } %>
   </div>
   <div class="col-md-4">
@@ -40,7 +44,7 @@
     <div>
       <p>Sample Text</p>
     </div>
-    <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/reviews">
+    <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules">
       <label>Review:</label>
       <textarea name="content"></textarea>
       <label>Rating:</label>

@@ -56,7 +56,6 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/:id', (req, res, next) => {
   User.findById(req.user.id, function(err, user) {
-    user.watched.push(req.params.id);
     user.save(function(err) {
       res.redirect(`/movies/${req.params.id}`)
     })
