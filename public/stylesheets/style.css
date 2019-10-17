@@ -41,3 +41,15 @@ main {
 .card-title {
   font-size-adjust: auto;
 }
+
+#add-review-form > input {
+  width: 100%;
+}
+
+.rules {
+  text-align: left;
+}
+
+#user-name {
+  display: none;
+}

@@ -11,10 +11,8 @@ passport.use(new GoogleStrategy({
 
     console.log("accessToken", accessToken)
     User.findOne({ 'googleId': profile.id }, function(err, user) {
-      console.log("ERR: ", err, user)
       if (err) return done(err);
       if (user) {
-        console.log("USER: ", user)
         return done(null, user);
       } else {
         // create new user
@@ -24,7 +22,6 @@ passport.use(new GoogleStrategy({
         });
         newUser.save(function(err) {
           if (err) return done(err);
-          console.log("okay: ", newUser)
           return done(null, newUser);
         });
       }

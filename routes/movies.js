@@ -12,11 +12,18 @@ const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=
 
 
 router.get('/my-list', (req, res, next) => {
+  console.log(req.user);
   res.render('my-list', {
-    user:req.user,
+    user: req.user,
     name: req.query.name
   });
 });
+
+router.get('/search/?', (req, res, next) => {
+  Movie.findOne({title: req.query.search}, (err, movie) => {
+    res.redirect(`/movies/${movie.movieId}`)
+  })
+})
 
 router.get('/', (req, res, next) => {
   let options = {
@@ -29,7 +36,7 @@ router.get('/', (req, res, next) => {
       user: req.user,
       name: req.query.name
     });
-  })
+  });
 });
 
 router.get('/:id', (req, res, next) => {
@@ -43,12 +50,15 @@ router.get('/:id', (req, res, next) => {
 
 
   Promise.all([castOps, movieOps]).then(([castDetails, movieDetails]) => {
-      res.render('show', {
-        castDetails,
-        movieDetails,
-        id,
-        user: req.user,
-        name: req.query.name
+    Movie.findOne({movieId: movieDetails.id}, (err, movie) => {
+        res.render('show', {
+          movie,
+          castDetails,
+          movieDetails,
+          id,
+          user: req.user,
+          name: req.query.name
+        })
       })
     })
     .catch(err => console.log(err));
@@ -56,6 +66,7 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/:id', (req, res, next) => {
   User.findById(req.user.id, function(err, user) {
+    user.watched.push(req.params.id)
     user.save(function(err) {
       res.redirect(`/movies/${req.params.id}`)
     })

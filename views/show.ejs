@@ -19,11 +19,11 @@
       <% } %>
     </h5>
     <p><%= movieDetails.overview %></p>
-    <% for (i = 0; i < 5; i++) { %>
+    <% for (i = 0; i < 3; i++) { %>
     <% if (castDetails.cast[i].name === "Nicolas Cage") { %>
     <h3>Nicolas Cage Stars in this movie</h3>
     <% break %>
-    <% } else if (i === 4){ %>
+    <% } else if (i === 2){ %>
     <h3>Nicolas Cage Cameos in this movie</h3>
     <% } %>
     <% } %>
@@ -38,25 +38,30 @@
     <% } %>
   </div>
   <div class="col-md-4">
-    <div>
-      <p>Sample Text</p>
+    <h2>Drinking Rules:</h2>
+    <h3>Drink...</h3>
+    <% if (movie.rules.length) { %>
+      <% movie.rules.forEach((r) => { %>
+        <div class="card">
+          <div class="card-body rules">
+            <p class="card-text rules"><%= r.content %></p>
+          </div>
+          <div class="text-muted">
+            <p class=""><%=r.userName %></p>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+    <div class="input-group col-md-4">
+      <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules">
+        <input type="text" name="content" class="form-control" aria-describedby="basic-addon2">
+        <input type="text" name="userName" value="<%= user.name %>" id="user-name">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" value="Add Review">Submit</button>
+        </div>
+
+      </form>
     </div>
-    <div>
-      <p>Sample Text</p>
-    </div>
-    <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules">
-      <label>Review:</label>
-      <textarea name="content"></textarea>
-      <label>Rating:</label>
-      <select name="rating">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-      <input type="submit" value="Add Review">
-    </form>
   </div>
 </div>
 
