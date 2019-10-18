@@ -36,6 +36,7 @@ router.get('/', (req, res, next) => {
   request(options, (err, response, body) => {
     let list = JSON.parse(body);
     res.render('movies', {
+      movie: Movie,
       list: list,
       user: req.user,
       name: req.query.name
