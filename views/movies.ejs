@@ -24,8 +24,11 @@
           </a>
         </div>
         <div class="card-body card-body-cascade">
-          <h4 class="font-weight-bold card-title"><%= film.title %></h4>
+          <h5 class="font-weight-bold card-title"><%= film.title %></h5>
           <a class="btn btn-success btn-details" href="/movies/<%= film.movieId %>">More!</a>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"><%= user.watched.includes(film.movieId) ? 'Watched' : 'Yet to watch' %></small>
         </div>
       </div>
     <% }); %>

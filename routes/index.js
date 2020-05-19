@@ -41,6 +41,7 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+// Dashboard
 router.get('/dashboard', function(req, res, next) {
   let query = []
   req.user.watched.forEach(w => {
@@ -60,11 +61,10 @@ router.get('/dashboard', function(req, res, next) {
   })
 })
 
-router.get('/my-list', (req, res, next) => {
-  console.log(req.user);
-  res.render('my-list', {
-    user: req.user,
-    name: req.query.name
-  });
-});
+// About Page
+router.get('/about', (req, res, next) => {
+  res.render('about', {
+    user: req.user
+  })
+})
 module.exports = router;

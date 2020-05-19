@@ -89,12 +89,10 @@ main {
 }
 
 #image {
-  background-image: url("https://img1.looper.com/img/uploads/2015/10/craziestnicolascageroles.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 85%;
-  height: 65vh;
+  display: block;
   margin: auto;
+  width: 100%;
+  margin-top: 1vh;
 }
 
 .navbar {
@@ -110,7 +108,7 @@ main {
 #text {
   margin: auto;
   padding: 10px;
-  width: 85%;
+  width: 65%;
 }
 
 .log-in {
@@ -131,4 +129,8 @@ main {
 
 #testing-notes {
   color: red;
+}
+
+.card-footer {
+  width: 100%;
 }
