@@ -7,7 +7,7 @@ const Movie = require('../models/movie');
 router.get('/', function(req, res, next) {
   let list = null;
   // Used to populate the DB from the API call
-  // console.log(Movie.populateDb())
+  // Movie.populateDb()
   res.render('index', {
     list: list,
     user: req.user,
@@ -25,7 +25,7 @@ router.get('/auth/google', passport.authenticate(
 // Google OAuth callback route
 router.get('/oauth2callback', passport.authenticate(
   'google', {
-    successRedirect: '/movies',
+    successRedirect: '/dashboard',
     failureRedirect: '/'
   }
 ));
@@ -36,4 +36,17 @@ router.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
+router.get('/dashboard', function(req, res, next) {
+  res.render('dashboard', {
+    user: req.user
+  })
+})
+
+router.get('/my-list', (req, res, next) => {
+  console.log(req.user);
+  res.render('my-list', {
+    user: req.user,
+    name: req.query.name
+  });
+});
 module.exports = router;

@@ -20,7 +20,9 @@ router.get('/my-list', (req, res, next) => {
 });
 
 router.get('/search/?', (req, res, next) => {
-  Movie.findOne({title: req.query.search}, (err, movie) => {
+  Movie.findOne({
+    title: req.query.search
+  }, (err, movie) => {
     if (movie) {
       res.redirect(`/movies/${movie.movieId}`);
     } else {
@@ -30,18 +32,20 @@ router.get('/search/?', (req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  let options = {
-    url: rootURL
-  };
-  request(options, (err, response, body) => {
-    let list = JSON.parse(body);
+  Movie.find({}, (err, list) => {
+    console.log(list)
     res.render('movies', {
       movie: Movie,
       list: list,
       user: req.user,
       name: req.query.name
     });
-  });
+  })
+  // let options = {
+  //   url: rootURL
+  // };
+  // request(options, (err, response, body) => {
+  // });
 });
 
 router.get('/:id', (req, res, next) => {
@@ -55,7 +59,9 @@ router.get('/:id', (req, res, next) => {
 
 
   Promise.all([castOps, movieOps]).then(([castDetails, movieDetails]) => {
-    Movie.findOne({movieId: movieDetails.id}, (err, movie) => {
+      Movie.findOne({
+        movieId: movieDetails.id
+      }, (err, movie) => {
         res.render('show', {
           movie,
           castDetails,

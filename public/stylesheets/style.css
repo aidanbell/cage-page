@@ -1,12 +1,29 @@
+/* COLORS
+#545F66
+#829399
+#D0F4EA
+#E8FCC2
+#B1CC74
+*/
+
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   align-items: center;
+  background-color: #829399
 }
 
 
-nav {
-  background-color: lightgray;
-  margin: none;
+
+.navbar-brand {
+  font-size: 60px;
+  color: D0F4EA;
+  text-decoration: none;
+  color: #D0F4EA
+}
+
+.navbar-brand:hover {
+  color: white;
 }
 
 .card-img-top {
@@ -73,10 +90,15 @@ main {
 
 #image {
   background-image: url("https://img1.looper.com/img/uploads/2015/10/craziestnicolascageroles.jpg");
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 85%;
-  height: 600px;
+  height: 65vh;
   margin: auto;
+}
+
+.navbar {
+  background-color: #545F66
 }
 
 #wrapper {
