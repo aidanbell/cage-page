@@ -42,8 +42,21 @@ router.get('/logout', function(req, res) {
 });
 
 router.get('/dashboard', function(req, res, next) {
-  res.render('dashboard', {
-    user: req.user
+  let query = []
+  req.user.watched.forEach(w => {
+    query.push(w.toString())
+  })
+  console.log(query)
+  Movie.find({
+    movieId: {
+      $in: query
+    }
+  }, function(err, watched) {
+    console.log(watched)
+    res.render('dashboard', {
+      watched: watched,
+      user: req.user,
+    })
   })
 })
 

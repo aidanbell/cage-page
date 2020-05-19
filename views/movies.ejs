@@ -8,11 +8,6 @@
     film, and user created drinking game rules. Log in to add the movie to your
     watched list, and then leave a rule for others to use on their next watch.
   </p>
-  <p id="testing-notes">
-    TESTING NOTES: Search is not great. Movie titles will have to match exactly
-    to the title of the movie. Rules cannot as of right now be deleted, but can/
-    will be manually purged if need be.
-  </p>
   <form class="form-inline my-2 my-lg-0" method="GET" action="/movies/search/" >
     <input class="form-control mr-sm-2" name="title" type="title" placeholder="Search" aria-label="title">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -30,7 +25,7 @@
         </div>
         <div class="card-body card-body-cascade">
           <h4 class="font-weight-bold card-title"><%= film.title %></h4>
-          <a class="btn btn-success btn-details" href="/movies/<%= film.id %>">More!</a>
+          <a class="btn btn-success btn-details" href="/movies/<%= film.movieId %>">More!</a>
         </div>
       </div>
     <% }); %>

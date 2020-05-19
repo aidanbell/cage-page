@@ -1,6 +1,8 @@
 <%- include('./partials/header') %>
 <h2 class="jumbotron">My List</h2>
-
+<% watched.forEach((w) => { %>
+  <h5><%= w.title %></h5>
+<% }) %>
 
 
 <%- include('./partials/footer') %>
