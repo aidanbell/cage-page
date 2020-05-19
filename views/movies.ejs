@@ -14,27 +14,26 @@
     will be manually purged if need be.
   </p>
   <form class="form-inline my-2 my-lg-0" method="GET" action="/movies/search/" >
-    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    <input class="form-control mr-sm-2" name="title" type="title" placeholder="Search" aria-label="title">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
   </form>
 </div>
-
-    <div class="movie-list card-group">
-      <div class="row">
-        <% list.forEach(function(film) { %>
-        <div class="card card-cascade">
-          <div class="view view-cascade overlay">
-            <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
-            <a>
-              <div class="mask rgba-white-slight"></div>
-            </a>
-          </div>
-          <div class="card-body card-body-cascade">
-            <h4 class="font-weight-bold card-title"><%= film.title %></h4>
-            <a class="btn btn-success btn-details" href="/movies/<%= film.id %>">More!</a>
-          </div>
+  <div class="movie-list card-group">
+    <div class="row">
+      <% list.forEach(function(film) { %>
+      <div class="card card-cascade">
+        <div class="view view-cascade overlay">
+          <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
         </div>
-      <% }); %>
-    </div>
-    </div>
+        <div class="card-body card-body-cascade">
+          <h4 class="font-weight-bold card-title"><%= film.title %></h4>
+          <a class="btn btn-success btn-details" href="/movies/<%= film.id %>">More!</a>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</div>
 <%- include('./partials/footer') %>

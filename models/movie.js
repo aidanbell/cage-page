@@ -8,7 +8,8 @@ const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=
 
 var ruleSchema = new Schema({
   userName: String,
-  content: String
+  content: String,
+  rating: Number
 }, {
   timestamps: true
 });
@@ -30,7 +31,10 @@ var movieSchema = new Schema({
 });
 
 movieSchema.plugin(fuzzy, {
-  fields: ['title']
+  fields: [{
+    name: 'title',
+    minSize: 1
+  }]
 })
 // Used to update Database with minimal movie info
 // to limit API calls

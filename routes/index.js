@@ -8,11 +8,16 @@ router.get('/', function(req, res, next) {
   let list = null;
   // Used to populate the DB from the API call
   // Movie.populateDb()
-  res.render('index', {
-    list: list,
-    user: req.user,
-    name: req.query.name,
-  });
+  if (!req.user) {
+    res.render('index', {
+      list: list,
+      user: req.user,
+      name: req.query.name,
+    });
+  } else {
+    res.redirect('movies')
+
+  }
 });
 
 // Google auth

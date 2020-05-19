@@ -19,21 +19,25 @@ router.get('/my-list', (req, res, next) => {
   });
 });
 
-router.get('/search/?', (req, res, next) => {
-  Movie.findOne({
-    title: req.query.search
-  }, (err, movie) => {
-    if (movie) {
-      res.redirect(`/movies/${movie.movieId}`);
-    } else {
-      res.redirect('/movies');
-    }
+router.get('/search/?', async (req, res, next) => {
+  let results = await Movie.findOne({
+    title: req.query.title
   })
+  if (results) {
+    res.redirect(`/movies/${results.movieId}`)
+  } else {
+    results = await Movie.fuzzySearch(req.query.title);
+    console.log(req.query)
+    res.render('results', {
+      list: results,
+      user: req.user,
+      user: req.user.name
+    })
+  }
 })
 
 router.get('/', (req, res, next) => {
   Movie.find({}, (err, list) => {
-    console.log(list)
     res.render('movies', {
       movie: Movie,
       list: list,
@@ -49,6 +53,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
+  console.log('hit');
   const id = req.params.id;
   const castOps = moviesCtrl.detailsCall({
     url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
