@@ -1,5 +1,5 @@
 <%- include('./partials/header') %>
- <h2 class="jumbotron">My List</h2>
+ <h2 class="jumbotron"><% user.name %></h2>
  <% user.watched.forEach((w) => { %>
    <h5><%= w %></h5>
  <% }) %>

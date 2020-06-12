@@ -16,9 +16,18 @@
     </ul>
     <% } %>
     <h5>User Rating:
-      <% for (i = 0; i < Math.round(movieDetails.vote_average / 2); i++) { %>
-      <span class="oi oi-star"></span>
+      <% if (Math.round(movieDetails.vote_average / 2) < 2) { %>
+        <i class="material-icons">sentiment_very_dissatisfied</i>
+      <% } else if (Math.round(movieDetails.vote_average / 2) === 2) { %>
+        <i class="material-icons">sentiment_dissatisfied</i>
+      <% } else if (Math.round(movieDetails.vote_average / 2) === 3) { %>
+        <i class="material-icons">sentiment_neutral</i>
+      <% } else if (Math.round(movieDetails.vote_average / 2) === 4) { %>
+        <i class="material-icons">sentiment_satisfied</i>
+      <% } else if (Math.round(movieDetails.vote_average / 2) === 5) { %>
+        <i class="material-icons">sentiment_very_satisfied</i>
       <% } %>
+      <span><%= Math.round(movieDetails.vote_average) %>/10</span>
     </h5>
     <p><%= movieDetails.overview %></p>
     <% for (i = 0; i < 3; i++) { %>
@@ -42,7 +51,7 @@
   <div class="col-md-4">
     <h2>Drinking Rules:</h2>
     <h3>Drink...</h3>
-    <% if (movie.rules.length) { %>
+    <% if (typeof movie.rules !== 'undefined') { %>
       <% movie.rules.forEach((r) => { %>
         <div class="card">
           <div class="card-body rules">

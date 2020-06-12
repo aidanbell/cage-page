@@ -10,15 +10,6 @@ const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
 
 
-
-router.get('/my-list', (req, res, next) => {
-  console.log(req.user);
-  res.render('my-list', {
-    user: req.user,
-    name: req.query.name
-  });
-});
-
 router.get('/search/?', async (req, res, next) => {
   let results = await Movie.findOne({
     title: req.query.title
@@ -53,7 +44,6 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:id', (req, res, next) => {
-  console.log('hit');
   const id = req.params.id;
   const castOps = moviesCtrl.detailsCall({
     url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`

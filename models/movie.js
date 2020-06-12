@@ -9,7 +9,7 @@ const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=
 var ruleSchema = new Schema({
   userName: String,
   content: String,
-  rating: Number,
+  toasts: Number,
 
 }, {
   timestamps: true
