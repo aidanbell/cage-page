@@ -6,7 +6,7 @@
       <img class="card-show" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-movieDetails.poster_path %>" alt="Card image cap">
     </div>
   </div>
-  <div class"col-md-4">
+  <div class="col-md-4">
     <h1><%= movieDetails.title %></h1>
     <% if (movieDetails.genres.length > 0) { %>
     <ul>
@@ -58,7 +58,9 @@
             <p class="card-text rules"><%= r.content %></p>
           </div>
           <div class="text-muted">
-            <p class=""><%=r.userName %></p>
+            <p class=""><%=r.userName %>
+              <button class="btn">Like</button>
+            </p>
           </div>
         </div>
       <% }) %>

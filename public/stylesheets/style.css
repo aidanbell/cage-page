@@ -79,8 +79,8 @@ main {
   font-size-adjust: auto;
 }
 
-#add-review-form > input {
-  width: 100%;
+#add-review-form input {
+  width: max-content;
 }
 
 .rules {
@@ -128,10 +128,6 @@ main {
   padding: 10px 40px 0px 40px;
 
   width: 100%;
-}
-
-#testing-notes {
-  color: red;
 }
 
 .card-footer {
