@@ -10,7 +10,6 @@ var ruleSchema = new Schema({
   userName: String,
   content: String,
   toasts: Number,
-
 }, {
   timestamps: true
 });

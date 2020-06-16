@@ -8,20 +8,19 @@
   </p> 
 </div>
 <div class="watched">
-  <% watched.forEach((w) => { %>
+  <!-- <% watched.forEach((w) => { %>
     <div class="watched-movie">
       <h3><%= w.title %></h3>
-      <% if (!w.rules.length) { %>
-        <h5>No Rules</h5>
-      <% } else { %>
-        <h5>Rules</h5>
-      <% } %>
-      <ul>
-        <li><span class="toasts">3</span>"Drink when something happens"</li>
-      </ul>
+      <% w.rules.forEach((r) => { %>
+        <% if (r.userName === user.name) { %>
+          <ul>
+            <li><span class="toasts"><%= r.toasts %></span><%= r.content %></li>
+          </ul>
+        <% } %>
+      <% }) %>
     </div>
-  <% }) %>
-<!-- <% watched.forEach((w) => { %>
+  <% }) %> -->
+<% watched.forEach((w) => { %>
   <div class="card card-cascade">
     <div class="view view-cascade overlay">
       <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-w.poster_path %>" alt="Card image cap">
@@ -31,11 +30,11 @@
     </div>
     <div class="card-body card-body-cascade">
       <h4 class="font-weight-bold card-title"><%= w.title %></h4>
-      <h5 class="font-weight-bold card-content"><%= w.rules.length %> Rules</h5>
+      <h5 class="font-weight-bold card-content"><%= w.rules.length %> Total Rules</h5>
       <a class="btn btn-success btn-details" href="/movies/<%= w.movieId %>">More!</a>
     </div>
   </div>
-<% }) %> -->
+<% }) %>
 </div>
 
 
