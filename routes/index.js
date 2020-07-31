@@ -47,13 +47,11 @@ router.get('/dashboard', function(req, res, next) {
   req.user.watched.forEach(w => {
     query.push(w.toString())
   })
-  console.log(query)
   Movie.find({
     movieId: {
       $in: query
     }
   }, function(err, watched) {
-    console.log(watched)
     res.render('dashboard', {
       watched: watched,
       user: req.user,

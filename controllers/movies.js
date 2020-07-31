@@ -5,7 +5,6 @@ let detailsCall = (options) => {
   return new Promise ((resolve, reject) => {
     request(options, (err, res, body) => {
       if(!err && res.statusCode == 200) {
-        console.log(JSON.parse(body))
         resolve(JSON.parse(body));
       };
       reject(err);

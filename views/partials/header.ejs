@@ -11,6 +11,7 @@
   <!-- Compiled and minified JavaScript -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script defer src="/javascripts/main.js""></script>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <title>Cage Page</title>
 </head>
@@ -18,23 +19,30 @@
   <div class="nav-wrapper">
 
     <!-- Navbar brand -->
-    <a class="brand-logo" href="/">The Cage Page</a>
+    <a class="brand-logo" href="/"><img class="cage-icon" src="/images/cage.png"></i></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     
     <!-- Links -->
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/about">About</a></li>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+      <li><a href="/about"><i class="nav-icon material-icons">info</i>About</a></li>
       <% if (user) { %>
-        <li><a href="/movies">Movies</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/movies"><i class="material-icons nav-icon">movie</i>Movies</a></li>
+        <li><a href="/dashboard"><i class="material-icons nav-icon">dashboard</i>Dashboard</a></li>
+        <li><a href="/logout"><i class="material-icons nav-icon">exit_to_app</i>Logout</a></li>
+      <% } else { %>
+        <li><a href="/auth/google"><i class="material-icons nav-icon">chevron_right</i>Log-in</a></li>
       <% } %>
-      <!-- Links -->
-      <% if (user) { %>
-        <!-- <a class="logged-in-nav" href="/movies/my-list">My List</a> -->
-        <a class="logged-in-nav" href="/logout"><i class="material-icons">exit_to_app</i>Logout</a>
-        <% } else { %>
-          <a href="/auth/google"><i class="material-icons">chevron_right</i>Log-in</a>
-          <% } %>
-  </ul>
+    </ul>
   </div>
 </nav>
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="/about"><i class="material-icons nav-icon">info</i>About</a></li>
+  <% if (user) { %>
+    <li><a href="/movies"><i class="material-icons nav-icon">movie</i>Movies</a></li>
+    <li><a href="/dashboard"><i class="material-icons nav-icon">movie</i>Dashboard</a></li>
+    <li><a href="/logout"><i class="material-icons nav-icon">exit_to_app</i>Logout</a></li>
+  <% } else { %>
+    <li><a href="/auth/google"><i class="material-icons nav-icon">chevron_right</i>Log-in</a></li>
+  <% } %>
+</ul>
 <main>

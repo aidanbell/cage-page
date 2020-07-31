@@ -18,11 +18,10 @@ router.get('/search/?', async (req, res, next) => {
     res.redirect(`/movies/${results.movieId}`)
   } else {
     results = await Movie.fuzzySearch(req.query.title);
-    console.log(req.query)
     res.render('results', {
       list: results,
       user: req.user,
-      user: req.user.name
+      name: req.user.name
     })
   }
 })

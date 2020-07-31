@@ -1,19 +1,21 @@
 <%- include('./partials/header') %>
-<div class="movie-list card-group">
-  <div class="row">
+<div class="movie-list">
+  <div class="row card-container">
     <% list.forEach(function(film) { %>
-    <div class="card card-cascade">
-      <div class="view view-cascade overlay">
-        <img class="card-img-top" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
-      <div class="card-body card-body-cascade">
-        <h4 class="font-weight-bold card-title"><%= film.title %></h4>
-        <a class="btn btn-success btn-details" href="/movies/<%= film.movieId %>">More!</a>
+    <div class="col l2 m4 s6">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-film.poster_path %>" alt="Card image cap">
+        </div>
+        <div class="card-content">
+          <span class="card-title"><%= film.title %></span>
+        </div>
+        <div class="card-action">
+          <a href="/movies/<%= film.movieId %>">More!</a>
+          <small class="text-muted"><%= user.watched.includes(film.movieId) ? 'Watched' : 'Yet to watch' %></small>
+        </div>
       </div>
     </div>
-  <% }); %>
-</div>
+    <% }); %>
+  </div>
 <%- include('./partials/footer') %>

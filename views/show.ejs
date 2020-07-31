@@ -1,12 +1,12 @@
 <%- include('./partials/header') %>
 
-<div class="card-details" id="details">
+<div class="row" id="details">
   <div class="col-md-4">
     <div class="img-show">
       <img class="card-show" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-movieDetails.poster_path %>" alt="Card image cap">
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col s4">
     <h1><%= movieDetails.title %></h1>
     <% if (movieDetails.genres.length > 0) { %>
     <ul>
@@ -48,7 +48,7 @@
       <% } %>
     <% } %>
   </div>
-  <div class="col-md-4">
+  <div class="col s4">
     <h2>Drinking Rules:</h2>
     <h3>Drink...</h3>
     <% if (typeof movie.rules !== 'undefined') { %>
@@ -65,7 +65,7 @@
         </div>
       <% }) %>
     <% } %>
-    <div class="input-group col-md-4">
+    <div class="input-group col s4">
       <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules">
         <input type="text" name="content" class="form-control" aria-describedby="basic-addon2">
         <input type="text" name="userName" value="<%= user.name %>" id="user-name">

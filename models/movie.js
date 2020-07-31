@@ -42,7 +42,6 @@ movieSchema.plugin(fuzzy, {
 movieSchema.static('populateDb', function() {
   request(rootURL, (err, response, body) => {
     let list = JSON.parse(body);
-    console.log(list)
     list.cast.forEach((movie) => {
       if (movie.poster_path === null) return;
       let newMovie = this.create({

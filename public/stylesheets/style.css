@@ -24,18 +24,6 @@ i {
   color: #D0F4EA
 }
 
-.navbar-brand:hover {
-  color: white;
-}
-
-.card-img-top {
-  /* width: 40%; */
-}
-
-.movie-list {
-  display: grid;
-}
-
 .card {
   align-items: center;
 }
@@ -61,9 +49,15 @@ i {
 }
 
 .logged-in-nav {
-  padding: auto;
+  display: flex;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.nav-icon {
+  display: inline !important;
+  color: white !important;
+  margin-right: 4px !important;
 }
 
 main {
@@ -98,7 +92,7 @@ main {
   margin-top: 1vh;
 }
 
-.navbar {
+.nav-wrapper {
   background-color: #545F66
 }
 
@@ -132,4 +126,21 @@ main {
 
 .card-footer {
   width: 100%;
+}
+
+
+.sidenav {
+  width: 20%;
+  background-color: #545F66;
+}
+
+.sidenav li > a{
+  color: white;
+  font-weight: 800;
+}
+
+.cage-icon {
+  height: 35px;
+  margin-bottom: -7px;
+  margin-right: 5px;
 }
