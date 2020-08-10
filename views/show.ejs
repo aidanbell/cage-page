@@ -1,12 +1,12 @@
 <%- include('./partials/header') %>
 
 <div class="row" id="details">
-  <div class="col-md-4">
+  <div class="col l4 m4 s12">
     <div class="img-show">
       <img class="card-show" src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-movieDetails.poster_path %>" alt="Card image cap">
     </div>
   </div>
-  <div class="col s4">
+  <div class="details col l4 m4 s12">
     <h1><%= movieDetails.title %></h1>
     <% if (movieDetails.genres.length > 0) { %>
     <ul>
@@ -48,7 +48,7 @@
       <% } %>
     <% } %>
   </div>
-  <div class="col s4">
+  <div class="col l4 m4 s12">
     <h2>Drinking Rules:</h2>
     <h3>Drink...</h3>
     <% if (typeof movie.rules !== 'undefined') { %>
@@ -56,17 +56,14 @@
         <div class="card">
           <div class="card-content rules">
             <p class="card-text rules">...<%= r.content %></p>
-          </div>
-          <div class="text-lighten-3">
-            <p class=""><%=r.userName %>
-              <a class="btn" href="/movies/<%= movieDetails.id%>/<%= r.id %>">Like</a>
-            </p>
+            <p class="author bottom"><%=r.userName %></p><br>
+            <a class="btn right" href="/movies/<%= movieDetails.id%>/<%= r.id %>">Like</a>
           </div>
         </div>
       <% }) %>
     <% } %>
     <div class="input-group col s4">
-      <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules">
+      <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules" autocomplete=off>
         <input type="text" name="content" class="form-control" aria-describedby="basic-addon2">
         <input type="text" name="userName" value="<%= user.name %>" id="user-name">
         <div class="input-group-append">

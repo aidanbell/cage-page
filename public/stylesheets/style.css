@@ -5,10 +5,18 @@
 #E8FCC2
 #B1CC74
 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-@media only screen and (min-width: 576px) {
+@media only screen and (max-width: 600px) {
   .card-content {
     height: 14vh;
+  }
+
+  .row {
+    flex-direction: column;
   }
 }
 
@@ -76,14 +84,16 @@ main {
 
 .card-title {
   font-size-adjust: auto;
+  margin-top: 0px;
 }
 
 .card-content {
   height: 14vh;
+  padding: 16px !important;
 }
 
 .card-action {
-  padding: 16px 16px !important; 
+  padding: 14px 16px !important; 
 }
 
 #add-review-form input {
@@ -158,3 +168,7 @@ main {
   margin-left: 10px;
 }
 
+.details {
+  background-color: #BCCCD1;
+  border: 1px solid black;
+}

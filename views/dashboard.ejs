@@ -10,20 +10,22 @@
 <div class="watched">
   <div class="row card-container">
 <% watched.forEach((w) => { %>
-  <div class="col l2 m4 s12">
-    <div class="card">
-      <div class="card-image">
-        <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-w.poster_path %>" alt="Card image cap">
-      </div>
-      <div class="card-content">
-        <h4 class="font-weight-bold card-title"><%= w.title %></h4>
-        <h5 class="font-weight-bold card-content"><%= w.rules.length %> Total Rules</h5>
-        <div class="card-action">
-        <a href="/movies/<%= w.movieId %>">More!</a>
+  <a href="/movies/<%= w.movieId %>">
+    <div class="col l2 m4 s6 hoverable">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://image.tmdb.org/t/p/w300_and_h450_bestv2/<%-w.poster_path %>" alt="Card image cap">
+        </div>
+        <div class="card-content">
+          <h4 class="card-title"><%= w.title %></h4>
+          <p class="small"><%= w.rules.length %> Total Rules</p>
+          <div class="bottom card-action">
+            <a href="/movies/<%= w.movieId %>">More!</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </a>
 <% }) %>
 <div>
 </div>
