@@ -78,6 +78,12 @@ let search = async (req, res, next) => {
   }
 }
 
+let toast = (req, res, next) => {
+  Movie.findOne({movieId: req.params.mId}, function(err, movie) {
+    console.log(movie)
+  })
+}
+
 
 
 module.exports = { 
@@ -85,5 +91,6 @@ module.exports = {
   getAll,
   show,
   addToWatched,
-  search
+  search,
+  toast
 };
