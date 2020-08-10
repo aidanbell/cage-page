@@ -40,7 +40,7 @@
     <% } %>
     <% if (user) { %>
       <% if (user.watched.filter(watch => watch == movieDetails.id).length) { %>
-        <button class="btn btn-danger" disabled>Watched</button>
+        <button class="btn btn-danger" disabled>You Cannot unWatch</button>
       <% } else { %>
         <form class="" action="/movies/<%= movieDetails.id %>" method="post">
           <button class="btn btn-success">Watched</button>
@@ -54,12 +54,12 @@
     <% if (typeof movie.rules !== 'undefined') { %>
       <% movie.rules.forEach((r) => { %>
         <div class="card">
-          <div class="card-body rules">
-            <p class="card-text rules"><%= r.content %></p>
+          <div class="card-content rules">
+            <p class="card-text rules">...<%= r.content %></p>
           </div>
-          <div class="text-muted">
+          <div class="text-lighten-3">
             <p class=""><%=r.userName %>
-              <button class="btn">Like</button>
+              <a class="btn" href="/movies/<%= movieDetails.id%>/<%= r.id %>">Like</a>
             </p>
           </div>
         </div>

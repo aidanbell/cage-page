@@ -1,6 +1,5 @@
 const express = require('express');
 const request = require('request');
-const passport = require('passport');
 const router = express.Router();
 const moviesCtrl = require('../controllers/movies');
 const Movie = require('../models/movie');
@@ -10,72 +9,15 @@ const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
 
 
-router.get('/search/?', async (req, res, next) => {
-  let results = await Movie.findOne({
-    title: req.query.title
-  })
-  if (results) {
-    res.redirect(`/movies/${results.movieId}`)
-  } else {
-    results = await Movie.fuzzySearch(req.query.title);
-    res.render('results', {
-      list: results,
-      user: req.user,
-      name: req.user.name
-    })
-  }
-})
+router.get('/search/?', moviesCtrl.search);
 
-router.get('/', (req, res, next) => {
-  Movie.find({}, (err, list) => {
-    res.render('movies', {
-      movie: Movie,
-      list: list,
-      user: req.user,
-      name: req.query.name
-    });
-  })
-  // let options = {
-  //   url: rootURL
-  // };
-  // request(options, (err, response, body) => {
-  // });
-});
+router.get('/', moviesCtrl.getAll);
+router.get('/:id', moviesCtrl.show);
 
-router.get('/:id', (req, res, next) => {
-  const id = req.params.id;
-  const castOps = moviesCtrl.detailsCall({
-    url: `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${token}`
-  });
-  const movieOps = moviesCtrl.detailsCall({
-    url: `https://api.themoviedb.org/3/movie/${id}?api_key=${token}&language=en-US`
-  });
+router.post('/:id', moviesCtrl.addToWatched)
 
-
-  Promise.all([castOps, movieOps]).then(([castDetails, movieDetails]) => {
-      Movie.findOne({
-        movieId: movieDetails.id
-      }, (err, movie) => {
-        res.render('show', {
-          movie,
-          castDetails,
-          movieDetails,
-          id,
-          user: req.user,
-          name: req.query.name
-        })
-      })
-    })
-    .catch(err => console.log(err));
-});
-
-router.post('/:id', (req, res, next) => {
-  User.findById(req.user.id, function(err, user) {
-    user.watched.push(req.params.id)
-    user.save(function(err) {
-      res.redirect(`/movies/${req.params.id}`)
-    })
-  })
+router.get('/:mId/:rId', (req, res, next) => {
+  console.log(req.params.mId, req.params.rId)
 })
 
 module.exports = router;

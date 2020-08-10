@@ -19,7 +19,7 @@
             </div>
             <div class="card-action">
               <a href="/movies/<%= film.movieId %>">More!</a>
-              <small class="text-muted"><%= user.watched.includes(film.movieId) ? 'Watched' : 'Yet to watch' %></small>
+              <small class="right text-muted"><%= user.watched.includes(film.movieId) ? 'Watched' : 'Not watched' %></small>
             </div>
           </div>
         </div>

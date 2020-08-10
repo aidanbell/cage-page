@@ -24,10 +24,10 @@
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     
     <!-- Links -->
-    <ul id="nav-mobile" class="left hide-on-med-and-down">
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="/about"><i class="nav-icon material-icons">info</i>About</a></li>
       <% if (user) { %>
-        <li><a href="/movies"><i class="material-icons nav-icon">movie</i>Movies</a></li>
+        <li><a href="/movies"><i class="material-icons nav-icon">movie</i>All Movies</a></li>
         <li><a href="/dashboard"><i class="material-icons nav-icon">dashboard</i>Dashboard</a></li>
         <li><a href="/logout"><i class="material-icons nav-icon">exit_to_app</i>Logout</a></li>
       <% } else { %>
@@ -39,7 +39,7 @@
 <ul class="sidenav" id="mobile-demo">
   <li><a href="/about"><i class="material-icons nav-icon">info</i>About</a></li>
   <% if (user) { %>
-    <li><a href="/movies"><i class="material-icons nav-icon">movie</i>Movies</a></li>
+    <li><a href="/movies"><i class="material-icons nav-icon">movie</i>All Movies</a></li>
     <li><a href="/dashboard"><i class="material-icons nav-icon">dashboard</i>Dashboard</a></li>
     <li><a href="/logout"><i class="material-icons nav-icon">exit_to_app</i>Logout</a></li>
   <% } else { %>

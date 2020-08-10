@@ -6,6 +6,11 @@
 #B1CC74
 */
 
+@media only screen and (min-width: 576px) {
+  .card-content {
+    height: 14vh;
+  }
+}
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -19,9 +24,9 @@ i {
 
 .navbar-brand {
   font-size: 60px;
-  color: D0F4EA;
   text-decoration: none;
-  color: #D0F4EA
+  color: #D0F4EA;
+  margin-left: 10px;
 }
 
 .card {
@@ -71,6 +76,14 @@ main {
 
 .card-title {
   font-size-adjust: auto;
+}
+
+.card-content {
+  height: 14vh;
+}
+
+.card-action {
+  padding: 16px 16px !important; 
 }
 
 #add-review-form input {
@@ -142,5 +155,6 @@ main {
 .cage-icon {
   height: 35px;
   margin-bottom: -7px;
-  margin-right: 5px;
+  margin-left: 10px;
 }
+
