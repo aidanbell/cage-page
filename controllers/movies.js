@@ -7,7 +7,7 @@ const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=
 
 let detailsCall = (options) => {
   return new Promise ((resolve, reject) => {
-    request(options, (err, res, body) => {
+    request(options, function(err, res, body) {
       if(!err && res.statusCode == 200) {
         resolve(JSON.parse(body));
       };
@@ -78,19 +78,10 @@ let search = async (req, res, next) => {
   }
 }
 
-let toast = (req, res, next) => {
-  Movie.findOne({movieId: req.params.mId}, function(err, movie) {
-    console.log(movie)
-  })
-}
-
-
-
 module.exports = { 
   detailsCall,
   getAll,
   show,
   addToWatched,
-  search,
-  toast
+  search
 };

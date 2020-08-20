@@ -7,9 +7,16 @@ const token = process.env.API_KEY;
 const rootURL = `https://api.themoviedb.org/3/person/2963/movie_credits?api_key=${token}&language=en-US`;
 
 var ruleSchema = new Schema({
-  userName: String,
-  content: String,
-  toasts: Number,
+  userName: {
+    type: String,
+    required: true
+  },
+  content: {
+    type: String,
+    required: true,
+    maxlength: 500
+  },
+  toasts: [{type: Schema.Types.ObjectId}],
 }, {
   timestamps: true
 });

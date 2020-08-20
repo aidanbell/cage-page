@@ -56,20 +56,25 @@
         <div class="card">
           <div class="card-content rules">
             <p class="card-text rules">...<%= r.content %></p>
+            <div class="right">
+              <p class="card-text right"><%= r.toasts.length %></p>
+              <i class="material-icons">local_bar</i>
+            </div>
             <p class="author bottom"><%=r.userName %></p><br>
-            <a class="btn right" href="/movies/<%= movieDetails.id%>/<%= r.id %>">Like</a>
+            <form class="<%= r.toasts.indexOf(user.id) ? '' : 'hidden' %>" action="/rules/<%= movieDetails.id%>/<%= r.id %>" method="POST">
+              <button type="submit" class="btn right">Toast</button>
+            </form>
           </div>
         </div>
       <% }) %>
     <% } %>
     <div class="input-group col s4">
-      <form id="add-review-form" method="POST" action="/movies/<%= movieDetails.id %>/rules" autocomplete=off>
+      <form id="add-review-form" method="POST" action="/rules/<%= movieDetails.id %>" autocomplete=off>
         <input type="text" name="content" class="form-control" aria-describedby="basic-addon2">
         <input type="text" name="userName" value="<%= user.name %>" id="user-name">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="submit" value="Add Review">Submit</button>
         </div>
-
       </form>
     </div>
   </div>
