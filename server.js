@@ -10,8 +10,8 @@ require('dotenv').config();
 require('./config/database');
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
 const rulesRouter = require('./routes/rules');
 

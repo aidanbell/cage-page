@@ -31,12 +31,12 @@
     </h5>
     <p><%= movieDetails.overview %></p>
     <% for (i = 0; i < 3; i++) { %>
-    <% if (castDetails.cast[i].name === "Nicolas Cage") { %>
-    <h3>Nicolas Cage Stars in this movie</h3>
-    <% break %>
-    <% } else if (i === 2){ %>
-    <h3>Nicolas Cage Cameos in this movie</h3>
-    <% } %>
+      <% if (castDetails.cast[i].name === "Nicolas Cage") { %>
+        <h3>Nicolas Cage Stars in this movie</h3>
+        <% break %>
+      <% } else if (i === 2){ %>
+        <h3>Nicolas Cage Cameos in this movie</h3>
+      <% } %>
     <% } %>
     <% if (user) { %>
       <% if (user.watched.filter(watch => watch == movieDetails.id).length) { %>

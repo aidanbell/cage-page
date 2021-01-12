@@ -21,6 +21,23 @@ var ruleSchema = new Schema({
   timestamps: true
 });
 
+var ratingSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  quality: {
+    type: Number,
+    min: 0,
+    max: 5
+  },
+  drinkability: {
+    type: Number,
+    min: 0,
+    max: 5
+  },
+})
+
 var movieSchema = new Schema({
   title: {
     type: String,
@@ -34,7 +51,8 @@ var movieSchema = new Schema({
     type: String,
     required: true
   },
-  rules: [ruleSchema]
+  rules: [ruleSchema],
+  userRatings: [ratingSchema]
 });
 
 movieSchema.plugin(fuzzy, {

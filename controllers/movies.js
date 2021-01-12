@@ -63,6 +63,7 @@ let addToWatched = (req, res, next) => {
 }
 
 let search = async (req, res, next) => {
+  console.log("this is working")
   let results = await Movie.findOne({
     title: req.query.title
   })
